@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof (Rigidbody2D))]
 public class Attacker : MonoBehaviour {
 
+	[Tooltip ("Average number of seconds between appearances")]
+	public float spawnTime;
 	// [Range (-1.0f, 1.5f)]
 	public float speed;
+	
 	private GameObject currentTarget;
 	private Animator animator;
 
@@ -13,6 +17,12 @@ public class Attacker : MonoBehaviour {
 		animator = GetComponent<Animator>();
 		// Rigidbody2D myRigidbody = gameObject.AddComponent<Rigidbody2D>();
 		// myRigidbody.isKinematic = true;
+		
+		//defenderParent = GameObject.Find("Defenders");
+		
+		//if (!defenderParent) {
+		//	defenderParent = new GameObject("Defenders");
+		//}
 	}
 	
 	// Update is called once per frame
