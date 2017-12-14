@@ -29,14 +29,7 @@ public class AttackerSpawner : MonoBehaviour {
 		
 		float spawnsPerFrame = spawnsPerSecond * Time.deltaTime;
 		
-		if (Random.value < spawnsPerFrame) {
-			return true;
-		}
-		
-		// if (Time.time - lastSpawnTime >= attacker.spawnRate) {
-		//	return true; 
-		// }
-		return false;
+		return Random.value < spawnsPerFrame;
 	}
 	
 	void Spawn (GameObject attacker) {
