@@ -4,11 +4,6 @@ using System.Collections;
 public class Projectile : MonoBehaviour {
 
 	public float speed, damage;
-
-	// Use this for initialization
-	void Start () {
-	
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -16,15 +11,15 @@ public class Projectile : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter2D (Collider2D collider) {
-		Debug.Log (name + " collided with " + collider); 
+		// Debug.Log (name + " collided with " + collider); 
 		
-		GameObject obj = collider.gameObject;
+		Attacker attacker = collider.gameObject;
 		
 		// Assume attacker has Health script
-		if (!obj.GetComponent<Attacker>()) {
+		if (!attacker.GetComponent<Attacker>()) {
 			return;
 		} 
-		obj.GetComponent<Health>().DealDamage(damage);
+		attacker.GetComponent<Health>().DealDamage(damage);
 		Destroy (gameObject);
 	}
 }
