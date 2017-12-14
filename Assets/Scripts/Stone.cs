@@ -3,13 +3,18 @@ using System.Collections;
 
 public class Stone : MonoBehaviour {
 
+	private Animator animator;
+	private Attacker attacker;
+
 	// Use this for initialization
 	void Start () {
-	
+		animator = GetComponent<Animator>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	void OnTriggerStay2D (Collider2D collider) {
+		attacker = collider.gameObject.GetComponent<Attacker>();
+		if (attacker) {
+			animator.SetTrigger("underAttackTrigger");
+		}
 	}
 }
