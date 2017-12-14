@@ -12,17 +12,7 @@ public class Defender : MonoBehaviour {
 		starDisplay = GameObject.FindObjectOfType<StarDisplay>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-	
-	// TODO: Add stars to the score method
 	public void AddStars (int amount) {
 		starDisplay.AddStars (amount);
-	}
-	
-	void OnTriggerEnter2D () {
-		Debug.Log (name + "Trigger Enter"); 
 	}
 }
