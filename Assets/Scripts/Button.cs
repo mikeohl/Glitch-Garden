@@ -10,7 +10,6 @@ public class Button : MonoBehaviour {
 
 	private Button [] buttonArray;
 	private Text costText;
-	
 
 	// Use this for initialization
 	void Start () {
@@ -23,14 +22,7 @@ public class Button : MonoBehaviour {
 		costText.text = thisDefender.starCost.ToString();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-	
-	
 	void OnMouseDown () {
-		
 		foreach (Button thisButton in buttonArray) {
 			thisButton.GetComponent<SpriteRenderer>().color = Color.black;
 		}
