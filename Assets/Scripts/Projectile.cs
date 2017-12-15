@@ -13,7 +13,7 @@ public class Projectile : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D collider) {
 		// Debug.Log (name + " collided with " + collider); 
 		
-		Attacker attacker = collider.gameObject;
+		GameObject attacker = collider.gameObject;
 		
 		// Assume attacker has Health script
 		if (!attacker.GetComponent<Attacker>()) {
