@@ -1,5 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿/* LevelManager is responsible for loading the 
+ * next scene and quiting the application.
+ * Uses Unity Scene Management for loading scenes. 
+ */
+
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
@@ -12,19 +17,19 @@ public class LevelManager : MonoBehaviour {
 			Invoke ("LoadNextLevel", autoLoadNextLevelAfter);
 		}
 	}
-	
-	public void LoadLevel (string name) {
-		Debug.Log ("Level load requested for: " + name);
-		Application.LoadLevel(name);
-	}
-	
-	public void QuitRequest () {
+
+    public void LoadLevel(string name) {
+        Debug.Log("Level load requested for: " + name);
+        SceneManager.LoadScene(name, LoadSceneMode.Single);
+    }
+
+    public void QuitRequest () {
 		Debug.Log ("Player wants to quit");
 		Application.Quit();
 	}
-	
-	public void LoadNextLevel () {
-		Application.LoadLevel(Application.loadedLevel + 1);
-	}
+
+    public void LoadNextLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 
 }
