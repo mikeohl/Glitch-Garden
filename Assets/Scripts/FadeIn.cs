@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+﻿/* FadeIn controls alpha of fade panel in UI for fade-in effect */
+
+using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class FadeIn : MonoBehaviour {
 
 	public float fadeInTime;
-	
 	
 	private Image fadePanel;
 	private Color currentColor = Color.black;
