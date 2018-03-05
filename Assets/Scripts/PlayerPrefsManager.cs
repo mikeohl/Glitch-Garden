@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿/* PlayerPrefsManager saves option and level data in Unity PlayerPrefs */
+
+using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerPrefsManager : MonoBehaviour {
 
@@ -20,25 +22,6 @@ public class PlayerPrefsManager : MonoBehaviour {
 		return PlayerPrefs.GetFloat (MASTER_VOLUME_KEY);
 	}
 	
-	public static void UnlockLevel (int level) {
-		if (level <= Application.levelCount - 1) {
-			PlayerPrefs.SetInt (LEVEL_KEY + level.ToString (), 1);
-		} else {
-			Debug.LogError ("Cannot unlock level not in build order");
-		}
-	}
-	
-	public static bool IsLevelUnlocked (int level) {
-		if (level <= Application.levelCount - 1) {
-			if (PlayerPrefs.GetInt (LEVEL_KEY + level.ToString ()) == 1) {
-				return true;
-			}
-		} else {
-			Debug.LogError ("Cannot check level not in build order");
-		}
-		return false;
-	}
-	
 	public static void SetDifficulty (float difficulty) {
 		Slider slider = GameObject.FindObjectOfType<Slider>();
 		if (difficulty >= slider.minValue && difficulty <= slider.maxValue) {
@@ -52,13 +35,22 @@ public class PlayerPrefsManager : MonoBehaviour {
 		return PlayerPrefs.GetFloat (DIFFICULTY_KEY);
 	}
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public static void UnlockLevel(int level){
+        if (level <= SceneManager.sceneCountInBuildSettings - 1) {
+            PlayerPrefs.SetInt(LEVEL_KEY + level.ToString(), 1);
+        } else {
+            Debug.LogError("Cannot unlock level not in build order");
+        }
+    }
+
+    public static bool IsLevelUnlocked(int level) {
+        if (level <= SceneManager.sceneCountInBuildSettings - 1) {
+            if (PlayerPrefs.GetInt(LEVEL_KEY + level.ToString()) == 1) {
+                return true;
+            }
+        } else {
+            Debug.LogError("Cannot check level not in build order");
+        }
+        return false;
+    }
 }
