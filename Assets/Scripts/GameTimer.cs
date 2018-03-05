@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿/* GameTimer updates Timer slider and loads next level when time expires */
+
+using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class GameTimer : MonoBehaviour {
 
@@ -12,25 +13,27 @@ public class GameTimer : MonoBehaviour {
 	private bool levelComplete = false;
 	private GameObject winLabel;
 	
-
 	// Use this for initialization
 	void Start () {
 		slider = GetComponent<Slider>();
 		audioSource = GetComponent<AudioSource>();
 		levelmanager = GameObject.FindObjectOfType<LevelManager>();
 		winLabel = GameObject.Find("You Won");
-		if (!winLabel) {
+
+        // Set win-game text to inactive to start the game
+        if (!winLabel) {
 			Debug.LogWarning("No Win UI Text for victory"); 
 		} else {
 			winLabel.SetActive(false);
 		}
 		
+        // Start level timer slider at 0
 		slider.value = slider.minValue =  0;
 		slider.maxValue = levelTimeInSeconds;
 	}
 	
 	// Update is called once per frame
-	// TODO: Fix instance where enemy hits lose collider while victory music is playing causing loss.
+    // Update the game timer slider and handle win condition if time is up
 	void Update () {
 		slider.value += Time.deltaTime;
 		if (slider.value >= levelTimeInSeconds && !levelComplete) {
@@ -42,15 +45,16 @@ public class GameTimer : MonoBehaviour {
 		}
 	}
 	
-	// Destroys all Objects with destroyOnWin tag
+	// Destroys all Objects with destroyOnWin tag to prevent triggering lose collider
+    // after winning game
 	void DestroyAllTaggedObjects () {
 		GameObject [] gameObjects = GameObject.FindGameObjectsWithTag("destroyOnWin");
 		foreach (GameObject gameObject in gameObjects) {
-			// Debug.Log (gameObject);
 			Destroy(gameObject);
 		}
 	}
 	
+    // levelManager LoadNextLevel function for Invoke call
 	void LoadNextLevel () {
 		levelmanager.LoadNextLevel();
 	}
