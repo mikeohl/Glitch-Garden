@@ -1,5 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿/* Shooter controls defenders objects of type Shooter. Shooters
+ * fire projectiles at attackers to destroy them. */
+
+using UnityEngine;
 
 public class Shooter : MonoBehaviour {
 
@@ -23,6 +25,7 @@ public class Shooter : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
+    // Detect attacker and turn on or off shooting animation trigger 
 	void Update () {
 		if (IsAttackerAheadInLane()) {
 			animator.SetBool ("isAttacking", true);
@@ -32,19 +35,18 @@ public class Shooter : MonoBehaviour {
 	}
 	
 	// Find spawner in same lane as shooting defender
-	void SetLaneSpawner () {
+	private void SetLaneSpawner () {
 		AttackerSpawner [] spawners = GameObject.FindObjectsOfType<AttackerSpawner>();
 		foreach (AttackerSpawner spawner in spawners) {
 			if (spawner.transform.position.y == this.transform.position.y) {
 				laneSpawner = spawner;
 				return;
 			}
-		}
-		
+		}		
 		Debug.LogError ("Lane Spawner not found");
 	}
-	
-	bool IsAttackerAheadInLane() {
+
+	private bool IsAttackerAheadInLane() {
 		// Check if there are any attackers
 		if (laneSpawner.transform.childCount <= 0) {
 			return false;
@@ -56,14 +58,13 @@ public class Shooter : MonoBehaviour {
 				return true;
 			}
 		}
-		
 		// Attacker(s) not in from of Defender
 		return false; 
 	}
 	
 	private void Fire () {
 		GameObject newProjectile = Instantiate (projectile) as GameObject;
-		newProjectile.transform.parent = projectileParent.transform;
+    	newProjectile.transform.parent = projectileParent.transform;
 		newProjectile.transform.position = launcher.transform.position;
 	}
 }
