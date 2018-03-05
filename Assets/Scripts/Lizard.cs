@@ -1,5 +1,8 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿/* Lizard handles attack and animation triggers for lizard 
+ * type attacker. 
+ */
+
+using UnityEngine;
 
 [RequireComponent (typeof (Attacker))]
 public class Lizard : MonoBehaviour {
@@ -12,17 +15,13 @@ public class Lizard : MonoBehaviour {
 		animator = GetComponent<Animator>();
 		attacker = GetComponent<Attacker>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-	
-	void OnTriggerEnter2D (Collider2D collider) {
-		Debug.Log (name + " collided with " + collider); 
-		
+
+    // Attack and set animation trigger when collider 
+    // is triggered by defender.
+    void OnTriggerEnter2D (Collider2D collider) {		
 		GameObject obj = collider.gameObject;
-		if (!obj.GetComponent<Defender>()) {
+
+		if (!obj.GetComponent<DefenderCurrency>()) {
 			return;
 		} else {
 			animator.SetBool ("isAttacking", true);

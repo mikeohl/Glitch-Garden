@@ -1,5 +1,8 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿/* Fox handles attack and animation triggers for fox 
+ * type attacker. 
+ */
+
+using UnityEngine;
 
 [RequireComponent (typeof (Attacker))]
 public class Fox : MonoBehaviour {
@@ -12,19 +15,16 @@ public class Fox : MonoBehaviour {
 		animator = GetComponent<Animator>();
 		attacker = GetComponent<Attacker>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-	
-	void OnTriggerEnter2D (Collider2D collider) {
-		// Debug.Log (name + " collided with " + collider); 
-		
+
+    // Attack (or jump over stone) and set animation 
+    // trigger when collider is triggered by defender.
+    void OnTriggerEnter2D (Collider2D collider) {
 		GameObject obj = collider.gameObject;
-		if (!obj.GetComponent<Defender>()) {
+
+		if (!obj.GetComponent<DefenderCurrency>()) {
 			return;
 		} 
+        // Jump over a stone
 		if (obj.GetComponent<Stone>()) {
 			animator.SetTrigger ("Jump Trigger");
 		} else {
