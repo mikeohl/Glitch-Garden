@@ -1,6 +1,9 @@
-﻿using UnityEngine;
+﻿/* OptionsController manages and persistently saves the volume
+ * and difficulty options of the options menu. 
+ */
+
+using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class OptionsController : MonoBehaviour {
 
@@ -23,6 +26,7 @@ public class OptionsController : MonoBehaviour {
 		musicManager.SetVolume (volumeSlider.value);
 	}
 	
+    // Save options from the option menu to persistent storage
 	public void SaveAndExit () {
 		PlayerPrefsManager.SetMasterVolume (volumeSlider.value);
 		PlayerPrefsManager.SetDifficulty (difficultySlider.value);
