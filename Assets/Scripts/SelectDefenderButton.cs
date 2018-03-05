@@ -1,19 +1,23 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
+﻿/* SelectDefenderButton controls the Defender selection.
+ * Initializes the UI of selectable defender. Sets selected 
+ * defender when user clicks a defender in UI.
+ */
 
-public class Button : MonoBehaviour {
+using UnityEngine;
+using UnityEngine.UI;
+
+public class SelectDefenderButton : MonoBehaviour {
 
 	public static GameObject selectedDefender;
 	
 	public GameObject defenderPrefab;
 
-	private Button [] buttonArray;
+	private SelectDefenderButton [] buttonArray;
 	private Text costText;
 
 	// Use this for initialization
 	void Start () {
-		buttonArray = GameObject.FindObjectsOfType<Button>();
+		buttonArray = GameObject.FindObjectsOfType<SelectDefenderButton>();
 		costText = GetComponentInChildren<Text>();
 		if (!costText) {
 			Debug.LogWarning (name + " has no cost indicator");
@@ -22,13 +26,14 @@ public class Button : MonoBehaviour {
 		costText.text = thisDefender.starCost.ToString();
 	}
 	
+    // Change color of selected defender to show it is selected
+    // and set selectedDefender
 	void OnMouseDown () {
-		foreach (Button thisButton in buttonArray) {
+		foreach (SelectDefenderButton thisButton in buttonArray) {
 			thisButton.GetComponent<SpriteRenderer>().color = Color.black;
 		}
 		
 		GetComponent<SpriteRenderer>().color = Color.white;
-		selectedDefender = defenderPrefab;
-		print (selectedDefender);		
+		selectedDefender = defenderPrefab;	
 	}
 }
