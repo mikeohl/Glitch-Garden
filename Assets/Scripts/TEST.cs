@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿/* Test class to test PlayPrefsManager */
+
+using UnityEngine;
 
 public class TEST : MonoBehaviour {
 
@@ -16,12 +17,5 @@ public class TEST : MonoBehaviour {
 		print(PlayerPrefsManager.GetDifficulty());
 		PlayerPrefsManager.SetDifficulty (1.5f);
 		print(PlayerPrefsManager.GetDifficulty());
-		
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }
