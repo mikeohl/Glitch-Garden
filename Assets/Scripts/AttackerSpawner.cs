@@ -7,18 +7,30 @@ using UnityEngine;
 public class AttackerSpawner : MonoBehaviour {
 
 	public GameObject [] attackerPrefabArray;
+    public float minDeltaAttackTime;
 	
 	// private float lastSpawnTime;
 	private Attacker attacker;
-	
-	// Update is called once per frame
+    private float lastAttackTime;
+
+    // Use this for initialization
+    void Start () {
+        lastAttackTime = Time.time;
+    }
+
+    // Update is called once per frame
     // Check if a new attacker should be spawned
-	void Update () {
-		foreach (GameObject thisAttacker in attackerPrefabArray) {
-			if (IsTimeToSpawn (thisAttacker)) {
-				Spawn (thisAttacker);
-			}
-		}
+    void Update () {
+        // Don't allow attackers to spawn over each other.
+        if (Time.time - lastAttackTime > minDeltaAttackTime) {
+            foreach (GameObject thisAttacker in attackerPrefabArray) {
+                if (IsTimeToSpawn(thisAttacker)) {
+                    //print("hello");
+                    Spawn(thisAttacker);
+                    lastAttackTime = Time.time;
+                }
+            }
+        }
 	}
 
     // Check if an enemy should be spawned according to attacker's 
