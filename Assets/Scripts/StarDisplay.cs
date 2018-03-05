@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿/* Star display manages the UI element that displays
+ * the star currency available to the player. */
+
+using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class StarDisplay : MonoBehaviour {
 
@@ -13,19 +15,11 @@ public class StarDisplay : MonoBehaviour {
 	void Start () {
 		text = GetComponent<Text>();
 		UpdateDisplay ();
-		
-		// stars = GameObject.FindObjectOfType<Stars>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 	
 	public void AddStars (int amount) {
 		stars += amount;
 		UpdateDisplay ();
-		// print (amount + " stars added to display");
 	}
 	
 	public Status UseStars (int amount) {
