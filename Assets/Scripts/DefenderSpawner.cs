@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class DefenderSpawner : MonoBehaviour {
 
-	private Camera myCamera;
-	private GameObject defenderParent;
-	private StarDisplay starDisplay;
+    private Camera myCamera;
+    private GameObject defenderParent;
+    private StarDisplay starDisplay;
 
-	// Use this for initialization
-	void Start () {
-		starDisplay = GameObject.FindObjectOfType<StarDisplay>();
+    // Use this for initialization
+    void Start () {
+        starDisplay = GameObject.FindObjectOfType<StarDisplay>();
 
         // Group defenders in defender GameObject
-		defenderParent = GameObject.Find("Defenders");
-		if (!defenderParent) {
-			defenderParent = new GameObject("Defenders");
-		}
-	}
+        defenderParent = GameObject.Find("Defenders");
+        if (!defenderParent) {
+            defenderParent = new GameObject("Defenders");
+        }
+    }
 
     // Call SpawnDefender for selected defender on player mouse click
     void OnMouseDown() {
@@ -39,17 +39,17 @@ public class DefenderSpawner : MonoBehaviour {
                                                  Quaternion.identity) as GameObject;
             newDefender.transform.parent = defenderParent.transform;
         }
-	}
-	
+    }
+    
     // Set position of defender to center of cell
-	private Vector2 SnapToGrid (Vector2 worldPoint) {
-		return new Vector2 (Mathf.RoundToInt(worldPoint.x), Mathf.RoundToInt(worldPoint.y));
-	}
-	
-	private Vector2 MouseClickToWorldPoint () {
-		// 10.0f in mousePosition vector3 is arbitrary z-distance from camera
-		myCamera = GameObject.FindObjectOfType<Camera>();
-		Vector3 mousePosition = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 10.0f);
-		return myCamera.ScreenToWorldPoint(mousePosition);
-	}
+    private Vector2 SnapToGrid (Vector2 worldPoint) {
+        return new Vector2 (Mathf.RoundToInt(worldPoint.x), Mathf.RoundToInt(worldPoint.y));
+    }
+    
+    private Vector2 MouseClickToWorldPoint () {
+        // 10.0f in mousePosition vector3 is arbitrary z-distance from camera
+        myCamera = GameObject.FindObjectOfType<Camera>();
+        Vector3 mousePosition = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 10.0f);
+        return myCamera.ScreenToWorldPoint(mousePosition);
+    }
 }

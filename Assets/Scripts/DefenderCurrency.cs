@@ -7,16 +7,16 @@ using UnityEngine;
 
 public class DefenderCurrency : MonoBehaviour {
 
-	public int starCost = 10; // default, change in editor
+    public int starCost = 10; // default, change in editor
 
-	private StarDisplay starDisplay;
+    private StarDisplay starDisplay;
 
-	// Use this for initialization
-	void Start () {
-		starDisplay = GameObject.FindObjectOfType<StarDisplay>();
-	}
-	
-	public void AddStars (int amount) {
-		starDisplay.AddStars (amount);
-	}
+    // Use this for initialization
+    void Start () {
+        starDisplay = GameObject.FindObjectOfType<StarDisplay>();
+    }
+    
+    public void AddStars (int amount) {
+        starDisplay.AddStars (amount);
+    }
 }

@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class AttackerSpawner : MonoBehaviour {
 
-	public GameObject [] attackerPrefabArray;
+    public GameObject [] attackerPrefabArray;
     public float minDeltaAttackTime;
-	
-	// private float lastSpawnTime;
-	private Attacker attacker;
+    
+    // private float lastSpawnTime;
+    private Attacker attacker;
     private float lastAttackTime;
 
     // Use this for initialization
@@ -31,12 +31,12 @@ public class AttackerSpawner : MonoBehaviour {
                 }
             }
         }
-	}
+    }
 
     // Check if an enemy should be spawned according to attacker's 
     // spawn time frequency. [Randomized about spawn frequency]
-	private bool IsTimeToSpawn (GameObject thisAttacker) {
-		attacker = thisAttacker.GetComponent<Attacker>();
+    private bool IsTimeToSpawn (GameObject thisAttacker) {
+        attacker = thisAttacker.GetComponent<Attacker>();
 
         // Log warning if attacker spawn time exceeds frame rate
         if (Time.deltaTime > attacker.spawnTime) {
@@ -44,15 +44,15 @@ public class AttackerSpawner : MonoBehaviour {
         }
 
         float spawnsPerSecond = 1 / attacker.spawnTime;
-		float spawnsPerFrame = spawnsPerSecond * Time.deltaTime;
-		
+        float spawnsPerFrame = spawnsPerSecond * Time.deltaTime;
+        
         // Check against random value to randomize around frequency
-		return Random.value < spawnsPerFrame;
-	}
-	
-	private void Spawn (GameObject attacker) {
-		GameObject newAttacker = Instantiate (attacker) as GameObject;
-		newAttacker.transform.parent = this.transform;
-		newAttacker.transform.position = this.transform.position;
-	}
+        return Random.value < spawnsPerFrame;
+    }
+    
+    private void Spawn (GameObject attacker) {
+        GameObject newAttacker = Instantiate (attacker) as GameObject;
+        newAttacker.transform.parent = this.transform;
+        newAttacker.transform.position = this.transform.position;
+    }
 }

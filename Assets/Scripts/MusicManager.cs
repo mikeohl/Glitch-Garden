@@ -8,9 +8,9 @@ using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour {
 
-	public AudioClip[] levelMusicChangeArray;
-	
-	private AudioSource audioSource;
+    public AudioClip[] levelMusicChangeArray;
+    
+    private AudioSource audioSource;
 
     // Play music when scene is loaded through Unity SceneManagement
     void OnEnable() { SceneManager.sceneLoaded += OnSceneLoaded; }
@@ -31,17 +31,17 @@ public class MusicManager : MonoBehaviour {
     }
 
     void Awake () {
-		DontDestroyOnLoad (gameObject);
-		Debug.Log ("Don't destroy on load: " + name);
-	}
+        DontDestroyOnLoad (gameObject);
+        Debug.Log ("Don't destroy on load: " + name);
+    }
 
-	// Use this for initialization
-	void Start () {
-		audioSource = GetComponent<AudioSource>();
-		audioSource.volume = PlayerPrefsManager.GetMasterVolume();
-	}
+    // Use this for initialization
+    void Start () {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.volume = PlayerPrefsManager.GetMasterVolume();
+    }
 
-	public void SetVolume (float newVolume) {
-		audioSource.volume = newVolume;
-	}
+    public void SetVolume (float newVolume) {
+        audioSource.volume = newVolume;
+    }
 }
