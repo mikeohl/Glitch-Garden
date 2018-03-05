@@ -1,24 +1,20 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿/* Health manages health points for attackers and defenders.
+ * Attackers and defenders can be destroyed if health falls
+ * too low.
+ */
+
+using UnityEngine;
 
 public class Health : MonoBehaviour {
 
 	public float health = 100.0f;
-
-	// Use this for initialization
-	void Start () {
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-	
+    // Adjust health to incoming damage and destory object
+    // when health is gone
 	public void DealDamage (float damage) {
 		health -= damage;
 		if (health <= 0.0f) {
-			// Optionally trigger animation or ...
+			// TODO: Possibly trigger new animation, then...
 			DestroyObject ();
 		}
 	}
