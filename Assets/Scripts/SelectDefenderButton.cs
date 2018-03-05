@@ -22,7 +22,7 @@ public class SelectDefenderButton : MonoBehaviour {
 		if (!costText) {
 			Debug.LogWarning (name + " has no cost indicator");
 		}
-		Defender thisDefender = defenderPrefab.GetComponent<Defender>();
+		DefenderCurrency thisDefender = defenderPrefab.GetComponent<DefenderCurrency>();
 		costText.text = thisDefender.starCost.ToString();
 	}
 	
