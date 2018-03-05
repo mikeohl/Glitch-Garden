@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿/* Stone handles defense animation triggers for stone type defender. */
+
+using UnityEngine;
 
 public class Stone : MonoBehaviour {
 
